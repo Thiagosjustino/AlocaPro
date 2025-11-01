@@ -55,7 +55,6 @@ public class AlocaproapiApplication {
         if (scanner.hasNextDouble()) { 
             custo = scanner.nextDouble();
             if (custo >= 0) {
-                // Acesso DIRETO ao atributo: colaborador.custoHora = ...
                 colaborador.custoHora = custo; 
                 entradaValida = true;
             } else {
@@ -93,3 +92,4 @@ public class AlocaproapiApplication {
 	}
 
 }
+
