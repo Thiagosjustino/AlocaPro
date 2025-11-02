@@ -14,43 +14,36 @@ public class AlocaproapiApplication {
 	Colaborador colaborador = new Colaborador();
 	Scanner scanner = new Scanner(System.in);
 	
-	System.out.println("\n==========================================");
-    System.out.println("  ALOCAPRO - INTERAÇÃO COM CONSOLE (FEATURE 1)");
-    System.out.println("==========================================");
+    System.out.println("ALOCAPRO - FEATURE 1");
 
-    // Coleta String: Nome
-    System.out.print("1. Digite o Nome do Colaborador: ");
-    // Acesso DIRETO ao atributo: colaborador.nome = ...
+    System.out.print("1- Informe o nome do colaborador: ");
+
     colaborador.nome = scanner.nextLine(); 
 
-    // Coleta int: Horas Diárias (Com validação hasNextInt e while)
     int horas = 0;
     boolean entradaValida = false;
     while (!entradaValida) {
-        System.out.print("2. Horas Diárias Padrão de Trabalho (ex: 8): ");
+        System.out.print("2- Horas diárias de trabalho (Exemplo: 8): ");
         if (scanner.hasNextInt()) {
             horas = scanner.nextInt();
             if (horas > 0 && horas <= 12) {
-                // Acesso DIRETO ao atributo: colaborador.horasDiariasPadrao = ...
-                colaborador.horasDiariasPadrao = horas; 
+                colaborador.horasDiarias = horas; 
                 entradaValida = true;
             } else {
-                System.out.println("!ERRO: Horas inválidas. Digite um número entre 1 e 12.");
+                System.out.println("!Erro: Informa um número entre 1 e 12.");
             }
         } else {
-            System.out.println("!ERRO: Entrada inválida. Digite um número inteiro.");
+            System.out.println("!Erro: Informe um número inteiro.");
             scanner.next(); 
         }
     }
     
-    // Coleta double: Custo por Hora (Com validação hasNextDouble e while)
     double custo = 0.0;
     entradaValida = false;
-    // Consome a quebra de linha pendente após nextInt
     scanner.nextLine(); 
 
     while (!entradaValida) {
-        System.out.print("3. Custo por Hora (ex: 50.50): R$");
+        System.out.print("3- Custo por hora: R$");
         
         if (scanner.hasNextDouble()) { 
             custo = scanner.nextDouble();
@@ -58,37 +51,28 @@ public class AlocaproapiApplication {
                 colaborador.custoHora = custo; 
                 entradaValida = true;
             } else {
-                System.out.println("!ERRO: O custo deve ser um valor não negativo.");
+                System.out.println("!Erro: O custo deve ser um valor positivo.");
             }
         } else {
-            System.out.println("!ERRO: Entrada inválida. Por favor, digite um valor numérico (ex: 50.50).");
+            System.out.println("!Erro: Informe um valor numérico (Exemplo: 150.50).");
             scanner.next(); 
         }
     }
     
-    // Consome a quebra de linha pendente após nextDouble
     scanner.nextLine(); 
 
-    // Coleta boolean: Em Projeto Crítico
-    System.out.print("4. O Colaborador está em Projeto Crítico? (S/N): ");
+    System.out.print("4- O colaborador está em projeto crítico? (S/N): ");
     String criticoInput = scanner.nextLine().trim().toUpperCase();
-    // Acesso DIRETO ao atributo: colaborador.emProjetoCritico = ...
-    colaborador.emProjetoCritico = criticoInput.equals("S"); 
+    colaborador.projetoCritico = criticoInput.equals("S"); 
     
-    // Fecha o Scanner
     scanner.close(); 
     
-    // Acesso DIRETO para exibir
-    System.out.println("\n>>> Coleta de dados concluída para " + colaborador.nome + " <<<");
+    System.out.println("\n>> Cadastramento de dados concluído para " + colaborador.nome + " <<");
 
-    // 5. Exibir Informações (Mostrando os dados coletados)
-    colaborador.exibirDadosColetados();
+    colaborador.exibirDadosCadastrados();
 
-    // 6. Invocar o método público (Que, por sua vez, chama o método privado)
     colaborador.verificarDisponibilidadeSemanal();
     
-    System.out.println("\n*** FIM DA EXECUÇÃO DA FEATURE 1 ***");
-
 	}
 
 }
